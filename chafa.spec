@@ -13,7 +13,7 @@ Summary:	Image to character art facsimile
 Summary(pl.UTF-8):	Zamiana obrazów na podobiznę ze znaków
 Name:		chafa
 Version:	1.14.1
-Release:	1
+Release:	2
 License:	LGPL v3+
 Group:		Applications/Graphics
 #Source0Download: https://github.com/hpjansson/chafa/releases
