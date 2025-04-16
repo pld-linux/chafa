@@ -1,7 +1,9 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# gtk-doc API documentation
+%bcond_without	avif		# AVIF support via libavif
 %bcond_without	avx2		# AVX2 optimized functions
+%bcond_without	jxl		# JPEG XL support via libjxl
 %bcond_without	static_libs	# static library
 
 %ifarch %{ix86}
@@ -27,9 +29,9 @@ BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	freetype-devel >= 2.0.0
 BuildRequires:	glib2-devel >= 1:2.26
 BuildRequires:	gtk-doc >= 1.20
-BuildRequires:	libavif-devel
+%{?with_avif:BuildRequires:	libavif-devel}
 BuildRequires:	libjpeg-devel
-BuildRequires:	libjxl-devel
+%{?with_jxl:BuildRequires:	libjxl-devel}
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libtiff-devel >= 4
 BuildRequires:	libtool >= 2:2
@@ -121,6 +123,8 @@ Dokumentacja API biblioteki chafa.
 %{__automake}
 %configure \
 	%{!?with_apidocs:--disable-gtk-doc} \
+	%{!?with_avif:--without-avif} \
+	%{!?with_jxl:--without-jxl} \
 	%{!?with_static_libs:--disable-static} \
 	--with-html-dir=%{_gtkdocdir}
 
